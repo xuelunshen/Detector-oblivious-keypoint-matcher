@@ -95,7 +95,7 @@ if __name__ == '__main__':
         help=f'Datasets: {set(datasets.keys())}')
     
     parser.add_argument(
-        '--output_dir', type=str, default='SP-SP-SP',
+        '--output_dir', type=str, default='SP-SP-RAND',
         help='Path to the directory in which the .npz results and optionally,'
              'the visualization images are written')
 

@@ -1,13 +1,13 @@
-# Branch 🌿 SP-SP-SP
+# Branch 🌿 SP-SP-RAND
 
 |                                    Experiments                                    	|  p   |  d   |  c   |
 | :--------------------------------------------------------------------------------------:	| :--: | :--: | :--: |
 | [main](https://github.com/Xylon-Sean/Detector-oblivious-keypoint-matcher/tree/main)		|  --  |  --  |  --  |
-| 👉[#1](https://github.com/Xylon-Sean/Detector-oblivious-keypoint-matcher/tree/SP-SP-SP)		|  SP  |  SP  |  SP  |
+| [#1](https://github.com/Xylon-Sean/Detector-oblivious-keypoint-matcher/tree/SP-SP-SP)		|  SP  |  SP  |  SP  |
 | [#2](https://github.com/Xylon-Sean/Detector-oblivious-keypoint-matcher/tree/R2D2-SP-SP)	| R2D2 |  SP  |  SP  |
 | [#3](https://github.com/Xylon-Sean/Detector-oblivious-keypoint-matcher/tree/SP-R2D2-SP)	|  SP  | R2D2 |  SP  |
 | [#4](https://github.com/Xylon-Sean/Detector-oblivious-keypoint-matcher/tree/SP-SP-R2D2)	|  SP  |  SP  | R2D2 |
-| [#5](https://github.com/Xylon-Sean/Detector-oblivious-keypoint-matcher/tree/SP-SP-RAND)	|  SP  |  SP  | RAND |
+| 👉[#5](https://github.com/Xylon-Sean/Detector-oblivious-keypoint-matcher/tree/SP-SP-RAND)	|  SP  |  SP  | RAND |
 | [#6](https://github.com/Xylon-Sean/Detector-oblivious-keypoint-matcher/tree/SP-SP-ZERO)	|  SP  |  SP  | ZERO |
 | [#7](https://github.com/Xylon-Sean/Detector-oblivious-keypoint-matcher/tree/SP-SP-ONE)	|  SP  |  SP  | ONE  |
 |[#8](https://github.com/Xylon-Sean/Detector-oblivious-keypoint-matcher/tree/SIFT-SIFT-SIFT)| SIFT | SIFT | SIFT |
@@ -18,7 +18,7 @@
 
 ---
 
-Confirm your current code is in branch **SP-SP-SP** version.
+Confirm your current code is in branch **SP-SP-RAND** version.
 
 Run command
 
@@ -26,9 +26,9 @@ Run command
 git status | head -1
 ```
 
-Make sure you are `On branch SP-SP-SP`.
+Make sure you are `On branch SP-SP-RAND`.
 
-<img src="assets/Branch-SP-SP-SP.png" >
+<img src="assets/Branch-SP-SP-RAND.png" >
 
 Then, run command below in the terminal to get results:
 
