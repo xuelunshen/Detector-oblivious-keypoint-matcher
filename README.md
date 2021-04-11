@@ -76,9 +76,7 @@ DETO
 
 ## 📊 Reproduce
 
-We use **branch** in git to manage different experimental settings, and name the branch using the **p-d-c** format that are from the table above.
-
-For example, if we switch the branch from **main** to **SP-SP-SP**, and then run the code under this branch (**SP-SP-SP**), we will get the **#1** experimental result in the table.
+We use **branch** in git to manage different experimental settings, and name the branch using the **p-d-c** format that are from the table below.
 
 <details>
 <summary><b>[ 🖱️ Click to show the result tables]</b></summary>
@@ -87,6 +85,8 @@ For example, if we switch the branch from **main** to **SP-SP-SP**, and then run
 	<img src="assets/results.png" width="100%">
 </p>
 </details>
+
+For example, if we switch the branch from **main** to **SP-SP-SP**, and then run the code under this branch (**SP-SP-SP**), we will get the **#1** experimental result in the table.
 
 Therefore, in addition to branch **main**, this repository also contains **12** branches, corresponding to the **12** experiment numbers in the table above.
 
@@ -111,6 +111,7 @@ By comparing the source code of different branches, we can easily observe which 
 | :--------------------------------------------------------------------------------------:	| :--: | :--: | :--: |
 | 👉[main](https://github.com/Xylon-Sean/Detector-oblivious-keypoint-matcher/tree/main)		|  --  |  --  |  --  |
 | [#1](https://github.com/Xylon-Sean/Detector-oblivious-keypoint-matcher/tree/SP-SP-SP)		|  SP  |  SP  |  SP  |
+https://github.com/Xylon-Sean/Detector-oblivious-keypoint-matcher/tree/SP-SP-SP
 | [#2](https://github.com/Xylon-Sean/Detector-oblivious-keypoint-matcher/tree/R2D2-SP-SP)	| R2D2 |  SP  |  SP  |
 | [#3](https://github.com/Xylon-Sean/Detector-oblivious-keypoint-matcher/tree/SP-R2D2-SP)	|  SP  | R2D2 |  SP  |
 | [#4](https://github.com/Xylon-Sean/Detector-oblivious-keypoint-matcher/tree/SP-SP-R2D2)	|  SP  |  SP  | R2D2 |
@@ -143,5 +144,4 @@ By comparing the source code of different branches, we can easily observe which 
 
 ### 📅 April 11, 2021
 
-- Update code of experiments from **#1** to **#7**.
-- We will release code of experiments from **#8** to **#12** within one week.
+- Update code of experiments from **#1** to **#12**.
