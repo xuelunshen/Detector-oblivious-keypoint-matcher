@@ -143,5 +143,4 @@ By comparing the source code of different branches, we can easily observe which 
 
 ### 📅 April 11, 2021
 
-- Update code of experiments from **#1** to **#7**.
-- We will release code of experiments from **#8** to **#12** within one week.
+- Update code of experiments from **#1** to **#12**.
