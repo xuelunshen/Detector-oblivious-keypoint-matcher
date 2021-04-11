@@ -172,6 +172,7 @@ class SuperPoint(nn.Module):
             keypoints = [
                 torch.nonzero(s > self.config['keypoint_threshold'], as_tuple=False)
                 for s in scores]
+            scores = data['scores'] if 'scores' in data else scores
             scores = [s[tuple(k.t())] for s, k in zip(scores, keypoints)]
     
             # Discard keypoints near the image borders
