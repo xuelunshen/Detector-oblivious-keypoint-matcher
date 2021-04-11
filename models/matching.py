@@ -40,7 +40,8 @@
 # --------------------------------------------------------------------*/
 # %BANNER_END%
 
-import torch
+import torch, cv2
+import numpy as np
 
 from .superpoint import SuperPoint
 from .superglue import SuperGlue
@@ -54,6 +55,7 @@ class Matching(torch.nn.Module):
             config = {}
         self.superpoint = SuperPoint(config.get('superpoint', {}))
         self.superglue = SuperGlue(config.get('superglue', {}))
+        self.extractor = cv2.SIFT_create()
 
     def forward(self, data):
         """ Run SuperPoint (optionally) and SuperGlue
@@ -63,14 +65,31 @@ class Matching(torch.nn.Module):
         """
         pred = {}
 
+        def sift(data):
+            gray = data['image']
+            kps = self.extractor.detect(gray.astype(np.uint8))
+            kpts = np.array([[x.pt[0], x.pt[1], x.response] for x in kps]).astype(np.float32)
+            data['scores'] = torch.from_numpy(kpts[:, 2])[None].cuda()
+            data['keypoints'] = torch.from_numpy(kpts[:, :2])[None].cuda()
+            return data
+
         # Extract SuperPoint (keypoints, scores, descriptors) if not provided
         if 'descriptors0' not in data:
-            pred0 = self.superpoint({'image': data['image0']})
+            data['image'] = data['img0']
+            data = sift(data)
+            data['image'] = data['image0']
+            pred0 = self.superpoint(data)
             pred = {**pred, **{k+'0': v for k, v in pred0.items()}}
         if 'descriptors1' not in data:
-            pred1 = self.superpoint({'image': data['image1']})
+            data['image'] = data['img1']
+            data = sift(data)
+            data['image'] = data['image1']
+            pred1 = self.superpoint(data)
             pred = {**pred, **{k+'1': v for k, v in pred1.items()}}
 
+        data.pop('image')
+        data.pop('scores')
+        data.pop('keypoints')
         # Batch all features
         # We should either have i) one image per batch, or
         # ii) the same number of local features for all images in the batch.

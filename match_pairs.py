@@ -95,7 +95,7 @@ if __name__ == '__main__':
         help=f'Datasets: {set(datasets.keys())}')
     
     parser.add_argument(
-        '--output_dir', type=str, default='SP-SP-SP',
+        '--output_dir', type=str, default='SIFT-SP-SIFT',
         help='Path to the directory in which the .npz results and optionally,'
              'the visualization images are written')
 
@@ -284,7 +284,10 @@ if __name__ == '__main__':
         if do_match:
             # Perform the matching.
             with torch.no_grad():
-                pred = matching({'image0': inp0, 'image1': inp1, 'img0': img0, 'img1': img1})
+                try:
+                    pred = matching({'image0': inp0, 'image1': inp1, 'img0': img0, 'img1': img1})
+                except:
+                    continue
             pred = {k: v[0].cpu().numpy() for k, v in pred.items()}
             kpts0, kpts1 = pred['keypoints0'], pred['keypoints1']
             matches, conf = pred['matches0'], pred['matching_scores0']
@@ -430,7 +433,10 @@ if __name__ == '__main__':
             stem0, stem1 = Path(name0).stem, Path(name1).stem
             eval_path = output_dir / \
                 '{}_{}_evaluation.npz'.format(stem0, stem1)
-            results = np.load(eval_path)
+            try:
+                results = np.load(eval_path)
+            except:
+                continue
             pose_error = np.maximum(results['error_t'], results['error_R'])
             pose_errors.append(pose_error)
             precisions.append(results['precision'])
