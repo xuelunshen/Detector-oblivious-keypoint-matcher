@@ -172,6 +172,7 @@ class SuperPoint(nn.Module):
             keypoints = [
                 torch.nonzero(s > self.config['keypoint_threshold'], as_tuple=False)
                 for s in scores]
+            scores = data['scores'] if 'scores' in data else scores
             scores = [s[tuple(k.t())] for s, k in zip(scores, keypoints)]
     
             # Discard keypoints near the image borders
@@ -196,11 +197,12 @@ class SuperPoint(nn.Module):
                 for k, s in zip(keypoints, scores)]))
 
         # Compute the dense descriptors
-        cDa = self.relu(self.convDa(x))
-        descriptors = self.convDb(cDa)
-        descriptors = torch.nn.functional.normalize(descriptors, p=2, dim=1)
+        # cDa = self.relu(self.convDa(x))
+        # descriptors = self.convDb(cDa)
+        # descriptors = torch.nn.functional.normalize(descriptors, p=2, dim=1)
 
         # Extract descriptors
+        descriptors = data['descriptors']
         descriptors = [sample_descriptors(k[None], d[None], 8)[0]
                        for k, d in zip(keypoints, descriptors)]
 
