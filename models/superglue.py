@@ -81,8 +81,8 @@ class KeypointEncoder(nn.Module):
         nn.init.constant_(self.encoder[-1].bias, 0.0) # make last mlp's bias to zero
 
     def forward(self, kpts, scores):
-        scores = torch.rand(scores.size()).to(scores.device)
-        # scores = torch.zeros(scores.size()).to(scores.device)
+        # scores = torch.rand(scores.size()).to(scores.device)
+        scores = torch.zeros(scores.size()).to(scores.device)
         # scores = torch.ones(scores.size()).to(scores.device)
         inputs = [kpts.transpose(1, 2), scores.unsqueeze(1)] # it will be [1, 3, N]
         return self.encoder(torch.cat(inputs, dim=1))
