@@ -1,20 +1,21 @@
 *[English](README.md) | [简体中文](README.zh-CN-simplified.md).*
 
-This repository is a Pytorch implementation for the **Detector-oblivious** part of [the paper](https://arxiv.org/abs/2104.00947).
+
+本仓库是这篇 [论文](https://arxiv.org/abs/2104.00947) 的 **Detector-oblivious** 部分的 Pytorch 实现代码.
 
 > Xuelun Shen, Cheng Wang, Xin Li, Qian Hu, Jingyi Zhang. "A Detector-oblivious Multi-arm Network for Keypoint Matching."
 
-##### Based on our findings, we could use [SuperGlue](https://psarlin.com/superglue) with any keypoint detector without a time-consuming re-training process.
+##### 根据我们的发现, 大家仅需要训练一次 [SuperGlue](https://psarlin.com/superglue), 即可在任何关键点检测器后面使用它, 而不需要针对不同的关键点检测器训练不同的 SuperGlue.
 
 ---
 
-## ⚙️ Environment
+## ⚙️ 运行环境
 
-This code is based on `Python (3.8.8)` and `Pytorch (py3.8_cuda11.1_cudnn8.0.5_0)`, and tested on `Ubuntu 18.04` with `GeForce RTX 3090`.
+代码在我自己这是运行在 `Python (3.8.8)`, `Pytorch (py3.8_cuda11.1_cudnn8.0.5_0)`, `Ubuntu 18.04` 和 `GeForce RTX 3090`.
 
-You could also use other environments and GPU, as long as the code can run successfully, and should be able to get similar results as in the paper.
+大家也可以使用其他的运行环境和GPU, 只要代码能顺利运行即可, 应该可以得到和论文中表格相似的结果.
 
-You could install necessary packages by the command below:
+一些必要的包, 大家可以通过下方的命令进行安装:
 
 ```bash
 pip install numpy opencv-python matplotlib imagesize tqdm h5py imageio
@@ -22,28 +23,32 @@ pip install numpy opencv-python matplotlib imagesize tqdm h5py imageio
 
 ---
 
-## 🔨 Usage
+## 🔨 使用
 
-### 💾 Get the data
+### 💾 获取测试数据
 
-Download datasets in the compressed file `data-DETO.zip` from [Google drive](https://drive.google.com/file/d/1qWrZjy1lYe6tB8OWE-Q07HcG5ycm3Fnn/view?usp=sharing), unzip it and rename the folder from `data-DETO` to `data`.
+从 [Google drive](https://drive.google.com/file/d/1qWrZjy1lYe6tB8OWE-Q07HcG5ycm3Fnn/view?usp=sharing) 中下载压缩文件 `data-DETO.zip`, 解压它, 然后把解压后的文件夹名从 `data-DETO` 重命名为 `data`.
 
-### 📦 Get pretrained model
+(压缩的时候忘记修改文件夹的名字了, 懒得再上传一遍了, 稍微麻烦一下大家.)
 
-Download pretrained model in the compressed file `weights-DETO.zip` from [Google drive](https://drive.google.com/file/d/1T5nmIrA13LfSpoKHMAvbXEd0HLcfHAnw/view?usp=sharing), unzip it and rename the folder from `weights-DETO` to `weights`.
 
-### 📁 Prepare directory structure
+### 📦 获取预训练模型
 
-Put the `data` folder into the source code folder.
+从 [Google drive](https://drive.google.com/file/d/1T5nmIrA13LfSpoKHMAvbXEd0HLcfHAnw/view?usp=sharing) 中下载压缩文件 `weights-DETO.zip`, 解压它, 然后把解压后的文件夹名从 `weights-DETO` 重命名为 `weights`。
 
-Put the `weights` folder into the `models` folder.
 
-If we name the source code folder as `DETO`.
+### 📁 确认文件结构
 
-The directory structure should be like this:
+将我们刚才重命名的 `data` 文件夹放到源代码文件夹里面.
+
+将我们刚才重命名的 `weights` 文件夹放到源代码文件夹中的 `models` 文件夹里面.
+
+如果我们称命名源代码文件夹为 `DETO`.
+
+那么文件的结构应当如下方:
 
 <details>
-<summary><b>[ 🖱️ Click to show the file structure]</b></summary>
+<summary><b>[ 🖱️ 点击此处展开 文件结构]</b></summary>
 
 ```bash
 DETO
@@ -76,28 +81,28 @@ DETO
 ```
 </details>
 
-## 📊 Reproduce
+## 📊 复现实验
 
-We use **branch** in git to manage different experimental settings, and name the branch using the **p-d-c** format that are from the table below.
+我们使用 Git 中的 **branch (分支)** 来对应论文表格中的不同实验设置, 并且采用表格中 **p-d-c** 的格式来命名 **(分支)**.
 
 <details>
-<summary><b>[ 🖱️ Click to show the result tables]</b></summary>
+<summary><b>[ 🖱️ 点击此处展开 表格结果]</b></summary>
 
 <p align="center">
 	<img src="assets/results.png" width="100%">
 </p>
 </details>
 
-For example, if we switch the branch from **main** to **SP-SP-SP**, and then run the code under this branch (**SP-SP-SP**), we will get the **#1** experimental result in the table.
+比如, 我们将分支从 **main** 切换到 **SP-SP-SP**, 然后在分支 **SP-SP-SP** 下运行代码, 我们就可以得到表格编号为 **#1** 的相似实验结果.
 
-Therefore, in addition to branch **main**, this repository also contains **12** branches, corresponding to the **12** experiment numbers in the table above.
+所以， 除了目前我们所在的主分支 **main**, 这个仓库还包含 **12** 个分支, 对应着上方表格中的 **12** 个实验.
 
-By comparing the source code of different branches, we can easily observe which changes have affected performance.
+这样做的好处是, 大家可以通过比较不同分支中的源代码, 轻松查看代码的改动, 了解代码的改动所带来的结果的改动.
 
 <details>
-<summary><b>[ 🖱️ Click to show the comparisons]</b></summary>
+<summary><b>[ 🖱️ 点击此处展开 代码比较]</b></summary>
 
-#### The comparison between R2D2-SP-SP and SP-SP-SP
+#### 比如我们比较分支 R2D2-SP-SP 和 SP-SP-SP
 
 <p align="center">
 	<img src="assets/comparisons.png" width="100%">
@@ -105,9 +110,9 @@ By comparing the source code of different branches, we can easily observe which 
 </details>
 
 <details>
-<summary><b>[ 🖱️ Click to switch the branch]</b></summary>
+<summary><b>[ 🖱️ 点击此处展开 分支跳转]</b></summary>
 
-#### Current we are on branch main
+#### 目前我们在分支 main
 
 |                                    Experiments                                    	|  p   |  d   |  c   |
 | :--------------------------------------------------------------------------------------:	| :--: | :--: | :--: |
@@ -126,7 +131,7 @@ By comparing the source code of different branches, we can easily observe which 
 |[#12](https://github.com/Xylon-Sean/Detector-oblivious-keypoint-matcher/tree/SIFT-SP-ONE)	| SIFT |  SP  | ONE  |
 </details>
 
-## ❤️ Acknowledgement
+## ❤️ 致谢
 
 🥇 This source code is heavily borrowed from [SuperGlue](https://github.com/magicleap/SuperGluePretrainedNetwork). If you use the code in your research, please cite [the SuperGlue](https://github.com/magicleap/SuperGluePretrainedNetwork#bibtex-citation) and follow its [license](https://github.com/magicleap/SuperGluePretrainedNetwork/blob/master/LICENSE).
 
@@ -141,12 +146,12 @@ By comparing the source code of different branches, we can easily observe which 
 🥇 Data **sun3d** is from [OA-Net](https://github.com/zjhthu/OANet#generate-training-and-testing-data) and [SUN3D](http://sun3d.cs.princeton.edu/).
 
 
-## 📋 Change log
+## 📋 改动记录
 
-### 📅 April 11, 2021
+### 📅 2021 年 4 月 11 日
 
-- Update code of experiments from **#1** to **#12**.
+- 更新实验 **#1** 到 **#12** 的相关代码.
 
-### 📅 April 25, 2021
+### 📅 2021 年 4 月 25 日
 
-- Add a Chinese-Simplified README.
+- 更新简体中文的 README.
